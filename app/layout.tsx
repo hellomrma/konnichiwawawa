@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Noto_Sans_JP, Zen_Maru_Gothic } from "next/font/google";
 import "./globals.css";
+
+const pretendard = localFont({
+  src: "../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  display: "swap",
+  weight: "100 900",
+});
 
 const notoJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -25,7 +33,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className={`${notoJP.variable} ${zenMaru.variable}`}>
+    <html
+      lang="ko"
+      className={`${pretendard.variable} ${notoJP.variable} ${zenMaru.variable}`}
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
   );
