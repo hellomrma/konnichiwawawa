@@ -30,6 +30,11 @@ export default function Home() {
           시작하기
         </Link>
       </div>
+
+      <p className="mt-8 flex gap-4 text-xs text-muted-foreground">
+        <Link href="/privacy" className="hover:underline">개인정보처리방침</Link>
+        <Link href="/terms" className="hover:underline">이용약관</Link>
+      </p>
     </main>
   );
 }

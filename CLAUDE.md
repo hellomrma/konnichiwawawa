@@ -116,7 +116,7 @@ NEXT_PUBLIC_SITE_URL
 | W6 | ✅ | 히라가나 콘텐츠 (4 units / 15 lessons / 120문제) + DB 연결 |
 | W7 | ✅ | 가타카나 콘텐츠 (3 units / 12 lessons / 96문제) |
 | W8 | ✅ | 어휘 콘텐츠 (3 units / 6 lessons / 48문제) + 헤더 XP/Streak 실 데이터 연결 |
-| W9 | ⏳ | 프로필, 반응형, /privacy·/terms, 배포 |
+| W9 | ✅ | /profile, /privacy, /terms 페이지 + 랜딩 약관 링크 |
 
 ## 하네스 (에이전트 팀)
 
