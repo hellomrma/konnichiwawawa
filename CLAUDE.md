@@ -115,7 +115,7 @@ NEXT_PUBLIC_SITE_URL
 | W5 | ⏳ | Koni SVG 4종 + Framer Motion |
 | W6 | ✅ | 히라가나 콘텐츠 (4 units / 15 lessons / 120문제) + DB 연결 |
 | W7 | ✅ | 가타카나 콘텐츠 (3 units / 12 lessons / 96문제) |
-| W8 | ⏳ | 어휘 콘텐츠 + XP/Streak 로직 |
+| W8 | ✅ | 어휘 콘텐츠 (3 units / 6 lessons / 48문제) + 헤더 XP/Streak 실 데이터 연결 |
 | W9 | ⏳ | 프로필, 반응형, /privacy·/terms, 배포 |
 
 ## 하네스 (에이전트 팀)

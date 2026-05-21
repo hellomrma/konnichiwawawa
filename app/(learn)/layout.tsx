@@ -1,13 +1,30 @@
 import Link from "next/link";
 import { Flame, Star, User } from "lucide-react";
+import { createSupabaseServer } from "@/lib/supabase/server";
 
-// W2 자리표시자 — XP/스트릭은 더미 값. 실제 사용자 데이터 연결은 후속 작업.
-const DUMMY_XP = 0;
-const DUMMY_STREAK = 0;
-
-export default function LearnLayout({
+export default async function LearnLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const supabase = await createSupabaseServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let xp = 0;
+  let streak = 0;
+
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("current_xp, current_streak")
+      .eq("id", user.id)
+      .single();
+    if (profile) {
+      xp = profile.current_xp;
+      streak = profile.current_streak;
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="sticky top-0 z-30 border-b border-border bg-card/95 backdrop-blur">
@@ -22,21 +39,21 @@ export default function LearnLayout({
           <div className="flex items-center gap-4">
             <div
               className="flex items-center gap-1.5"
-              aria-label={`XP ${DUMMY_XP}`}
+              aria-label={`XP ${xp}`}
             >
               <Star className="size-4 fill-accent text-accent" />
               <span className="text-sm font-bold tabular-nums text-accent">
-                {DUMMY_XP}
+                {xp}
               </span>
             </div>
 
             <div
               className="flex items-center gap-1.5"
-              aria-label={`연속 학습 ${DUMMY_STREAK}일`}
+              aria-label={`연속 학습 ${streak}일`}
             >
               <Flame className="size-4 fill-primary text-primary" />
               <span className="text-sm font-bold tabular-nums text-foreground">
-                {DUMMY_STREAK}
+                {streak}
               </span>
             </div>
 
