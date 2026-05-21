@@ -6,26 +6,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { createSupabaseServer } from "@/lib/supabase/server";
 
-// W2 더미 데이터 — 실제 DB(units 테이블) 연결은 후속 작업(스펙 Section 11.1).
-type Unit = {
+type UnitCard = {
   id: string;
   title: string;
   lessonCount: number;
   progress: number; // 0–100
+  href: string;
 };
-
-const DUMMY_UNITS: Unit[] = [
-  { id: "hira-1", title: "히라가나 1", lessonCount: 4, progress: 0 },
-  { id: "hira-2", title: "히라가나 2", lessonCount: 3, progress: 0 },
-  { id: "hira-3", title: "히라가나 3", lessonCount: 3, progress: 0 },
-  { id: "hira-4", title: "히라가나 4", lessonCount: 3, progress: 0 },
-  { id: "kata-1", title: "가타카나 1", lessonCount: 3, progress: 0 },
-  { id: "kata-2", title: "가타카나 2", lessonCount: 3, progress: 0 },
-  { id: "kata-3", title: "가타카나 3", lessonCount: 3, progress: 0 },
-  { id: "vocab-greet", title: "어휘: 인사", lessonCount: 2, progress: 0 },
-  { id: "vocab-num", title: "어휘: 숫자", lessonCount: 2, progress: 0 },
-  { id: "vocab-daily", title: "어휘: 일상", lessonCount: 4, progress: 0 },
-];
 
 export default async function LearnPage() {
   const supabase = await createSupabaseServer();
@@ -35,9 +22,49 @@ export default async function LearnPage() {
 
   if (!user) redirect("/login");
 
-  const units = DUMMY_UNITS;
+  const [{ data: units }, { data: lessons }, { data: progress }] =
+    await Promise.all([
+      supabase.from("units").select("id, sort_order, title").order("sort_order"),
+      supabase
+        .from("lessons")
+        .select("id, unit_id, sort_order")
+        .order("sort_order"),
+      supabase
+        .from("user_lesson_progress")
+        .select("lesson_id")
+        .eq("user_id", user.id),
+    ]);
 
-  if (units.length === 0) {
+  const completedIds = new Set((progress ?? []).map((p) => p.lesson_id));
+
+  const unitCards: UnitCard[] = (units ?? []).map((unit) => {
+    // lessons는 sort_order 순으로 정렬되어 있으므로 단원별 첫 미완료 레슨을 그대로 찾는다.
+    const unitLessons = (lessons ?? []).filter(
+      (lesson) => lesson.unit_id === unit.id,
+    );
+    const lessonCount = unitLessons.length;
+    const completedCount = unitLessons.filter((lesson) =>
+      completedIds.has(lesson.id),
+    ).length;
+    const progressPct =
+      lessonCount === 0 ? 0 : Math.round((completedCount / lessonCount) * 100);
+
+    const firstIncomplete = unitLessons.find(
+      (lesson) => !completedIds.has(lesson.id),
+    );
+    const target = firstIncomplete ?? unitLessons[0];
+    const href = target ? `/lesson/${target.id}` : "#";
+
+    return {
+      id: unit.id,
+      title: unit.title,
+      lessonCount,
+      progress: progressPct,
+      href,
+    };
+  });
+
+  if (unitCards.length === 0) {
     return (
       <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
         <p className="font-jp-display text-4xl text-primary">わんわん</p>
@@ -51,9 +78,13 @@ export default async function LearnPage() {
       <h1 className="text-xl font-bold">학습</h1>
 
       <ul className="flex flex-col gap-3">
-        {units.map((unit) => (
+        {unitCards.map((unit) => (
           <li key={unit.id}>
-            <Link href="#" aria-disabled className="block">
+            <Link
+              href={unit.href}
+              aria-disabled={unit.lessonCount === 0 || undefined}
+              className="block"
+            >
               <Card className="transition-shadow hover:ring-foreground/20">
                 <CardContent className="flex items-center gap-4">
                   <div className="flex min-w-0 flex-1 flex-col gap-2">
