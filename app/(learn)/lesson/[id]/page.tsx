@@ -79,6 +79,33 @@ function buildDummyExercises(lessonId: string): Exercise[] {
       correctAnswer: "na",
       options: ["na", "ni", "nu", "ne"],
     },
+    {
+      id: "ex-9",
+      lessonId,
+      sortOrder: 9,
+      exerciseType: "input",
+      prompt: '"a"를 히라가나로 입력하세요',
+      correctAnswer: "あ",
+      options: null,
+    },
+    {
+      id: "ex-10",
+      lessonId,
+      sortOrder: 10,
+      exerciseType: "input",
+      prompt: '"ka"를 히라가나로 입력하세요',
+      correctAnswer: "か",
+      options: null,
+    },
+    {
+      id: "ex-11",
+      lessonId,
+      sortOrder: 11,
+      exerciseType: "input",
+      prompt: '"sa"를 히라가나로 입력하세요',
+      correctAnswer: "さ",
+      options: null,
+    },
   ];
 }
 

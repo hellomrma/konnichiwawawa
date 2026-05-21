@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 import { McqExercise } from "@/components/exercise/McqExercise";
+import { KanaInputExercise } from "@/components/exercise/KanaInputExercise";
 import { Koni } from "@/components/mascot/Koni";
 import { Progress } from "@/components/ui/progress";
 import type {
@@ -72,11 +73,19 @@ export function LessonPlayer({ lessonId, exercises }: LessonPlayerProps) {
         />
       </div>
 
-      <McqExercise
-        key={current.id}
-        exercise={current}
-        onSubmit={handleSubmit}
-      />
+      {current.exerciseType === "mcq" ? (
+        <McqExercise
+          key={current.id}
+          exercise={current}
+          onSubmit={handleSubmit}
+        />
+      ) : (
+        <KanaInputExercise
+          key={current.id}
+          exercise={current}
+          onSubmit={handleSubmit}
+        />
+      )}
 
       {judged && !isLast && (
         <button
