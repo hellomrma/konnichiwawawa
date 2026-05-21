@@ -114,7 +114,7 @@ NEXT_PUBLIC_SITE_URL
 | W4 | ⏳ | KanaInputExercise + 피드백 애니메이션 |
 | W5 | ⏳ | Koni SVG 4종 + Framer Motion |
 | W6 | ✅ | 히라가나 콘텐츠 (4 units / 15 lessons / 120문제) + DB 연결 |
-| W7 | ⏳ | 가타카나 콘텐츠 (~100문제) |
+| W7 | ✅ | 가타카나 콘텐츠 (3 units / 12 lessons / 96문제) |
 | W8 | ⏳ | 어휘 콘텐츠 + XP/Streak 로직 |
 | W9 | ⏳ | 프로필, 반응형, /privacy·/terms, 배포 |
 
