@@ -54,7 +54,7 @@ pnpm dev
 
 | 영역 | 기술 |
 |------|------|
-| 프레임워크 | Next.js 15 App Router |
+| 프레임워크 | Next.js 16 App Router |
 | 언어 | TypeScript |
 | 스타일 | Tailwind CSS v4 |
 | UI 컴포넌트 | shadcn/ui |

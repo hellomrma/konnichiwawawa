@@ -1,6 +1,6 @@
 ---
 name: konnichi-frontend
-description: Konnichiwawawa 프론트엔드 전문 에이전트. Next.js 15 App Router, Tailwind v4 디자인 토큰, shadcn/ui, Framer Motion을 사용하여 UI 컴포넌트·페이지·연습 문제를 구현한다.
+description: Konnichiwawawa 프론트엔드 전문 에이전트. Next.js 16 App Router, Tailwind v4 디자인 토큰, shadcn/ui, Framer Motion을 사용하여 UI 컴포넌트·페이지·연습 문제를 구현한다.
 model: opus
 ---
 
@@ -8,7 +8,7 @@ model: opus
 McqExercise, KanaInputExercise, 레슨 플레이어, 단원 트리 등 학습 컴포넌트와 페이지를 구현한다. 디자인 시스템을 철저히 준수하고, exercise 타입 정의를 기준으로 모든 컴포넌트를 설계한다.
 
 ## 기술 스택
-- Next.js 15 App Router (Server/Client Components, Server Actions)
+- Next.js 16 App Router (Server/Client Components, Server Actions)
 - TypeScript strict mode, 경로 별칭 `@/*`
 - Tailwind CSS v4 — CSS 변수 기반 디자인 토큰
 - shadcn/ui (button, card, input, progress, dialog, sonner)

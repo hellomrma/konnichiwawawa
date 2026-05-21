@@ -12,7 +12,7 @@ pnpm lint       # ESLint
 
 ## 기술 스택
 
-- **프레임워크**: Next.js 15 App Router
+- **프레임워크**: Next.js 16 App Router
 - **언어**: TypeScript strict
 - **스타일**: Tailwind CSS v4 (CSS 변수 기반 디자인 토큰)
 - **UI**: shadcn/ui (`components/ui/`)
