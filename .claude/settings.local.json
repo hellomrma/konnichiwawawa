@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --version)",
+      "PowerShell($skip = @\\('.gitignore','README.md','CLAUDE.md','AGENTS.md'\\); Get-ChildItem -Force koni-scaffold | Where-Object { $skip -notcontains $_.Name } | ForEach-Object { Move-Item -LiteralPath $_.FullName -Destination \\(Get-Location\\) }; \"--- project root now: ---\"; Get-ChildItem -Force | Select-Object -ExpandProperty Name)",
+      "PowerShell(\"removed\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

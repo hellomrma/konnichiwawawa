@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* No dark mode (spec Section 1): make `dark:` class-based so OS preference never flips it. */
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Section 3 디자인 토큰.
+ * shadcn 시맨틱 토큰(짧은 이름)에 스펙 팔레트 값을 주입하고,
+ * @theme inline에서 Tailwind 유틸리티로 매핑한다.
+ */
+:root {
+  --radius: 16px;
+
+  --background: #fff8ed; /* 따뜻한 크림 */
+  --foreground: #2a2520;
+  --card: #ffffff;
+  --card-foreground: #2a2520;
+  --popover: #ffffff;
+  --popover-foreground: #2a2520;
+  --primary: #ff7849; /* 코랄 오렌지 — CTA, 진행도 */
+  --primary-foreground: #fff8ed;
+  --primary-hover: #f25a25;
+  --secondary: #4a5fc1; /* 인디고 — 링크, 보조 액션 */
+  --secondary-foreground: #ffffff;
+  --muted: #f4ead6;
+  --muted-foreground: #7a716a;
+  --accent: #ffc94a; /* XP/스트릭 */
+  --accent-foreground: #2a2520;
+  --success: #4ea674; /* 정답 */
+  --destructive: #e15a5a; /* 오답 */
+  --destructive-foreground: #ffffff;
+  --border: #f0e6d2;
+  --input: #f0e6d2;
+  --ring: #ff7849;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* 스펙 Section 3 이름 별칭 */
+  --color-bg: var(--background);
+  --color-surface: var(--card);
+  --color-text: var(--foreground);
+  --color-text-muted: var(--muted-foreground);
+  --color-error: var(--destructive);
+
+  /* 폰트 변수 — app/layout.tsx의 next/font에서 주입 */
+  --font-sans: var(--font-pretendard), system-ui, sans-serif;
+  --font-jp: var(--font-noto-jp), sans-serif;
+  --font-jp-display: var(--font-zen-maru), var(--font-noto-jp), sans-serif;
+}
+
+@theme {
+  /* 라운드 — non-inline이라 var(--radius-*) 직접 참조도 해석된다 */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* 듀오링고식 입체 버튼 그림자 */
+  --shadow-btn: 0 4px 0 0 rgb(0 0 0 / 0.1);
+  --shadow-btn-active: 0 1px 0 0 rgb(0 0 0 / 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    background: var(--background);
+    color: var(--foreground);
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
